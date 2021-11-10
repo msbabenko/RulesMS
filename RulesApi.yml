@@ -19,4 +19,16 @@ spec:
         - containerPort: 8080
           imagePullSecrets:
         - name: induk
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: rulesapi
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80
+    selector:
+        app: RulesApi
        
