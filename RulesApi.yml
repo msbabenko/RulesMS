@@ -1,34 +1,37 @@
-﻿apiVersion: apps/v1
+﻿--- 
+apiVersion: apps/v1
 kind: Deployment
-metadata:
+metadata: 
   name: rulesapi
-spec:
+spec: 
   replicas: 1
-  selector:
-    matchLabels:
+  selector: 
+    matchLabels: 
       app: RulesApi
-  template:
-    metadata:
-      labels:
+  template: 
+    metadata: 
+      labels: 
         app: RulesApi
-    spec:
-      containers:
-      - name: induk
-        image: induk.azurecr.io/rules-repo:latest
-        ports:
-        - containerPort: 8080
-          imagePullSecrets:
-        - name: induk
-
----
+    spec: 
+      containers: 
+        - 
+          image: "induk.azurecr.io/rules-repo:latest"
+          name: induk
+          ports: 
+            - 
+              containerPort: 8080
+              imagePullSecrets: ~
+            - 
+              name: induk
+--- 
 apiVersion: v1
 kind: Service
-metadata:
-    name: rulesapi
-spec:
-    type: LoadBalancer
-    ports:
-    - port: 80
-    selector:
-        app: RulesApi
-       
+metadata: 
+  name: rulesapi
+spec: 
+  ports: 
+    - 
+      port: 80
+  selector: 
+    app: RulesApi
+  type: LoadBalancer
