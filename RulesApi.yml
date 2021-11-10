@@ -14,24 +14,21 @@ spec:
         app: RulesApi
     spec: 
       containers: 
-        - 
-          image: "induk.azurecr.io/rules-repo:latest"
-          name: induk
-          ports: 
-            - 
-              containerPort: 8080
-              imagePullSecrets: ~
-            - 
-              name: induk
+      - name: induk
+        image: "induk.azurecr.io/rules-repo:latest"
+        ports: 
+        - containerPort: 8080
+      imagePullSecrets: 
+      - name: induk
+
 --- 
 apiVersion: v1
 kind: Service
 metadata: 
   name: rulesapi
 spec: 
+  type: LoadBalancer
   ports: 
-    - 
-      port: 80
+  - port: 80
   selector: 
     app: RulesApi
-  type: LoadBalancer
